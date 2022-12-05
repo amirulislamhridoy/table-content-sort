@@ -1,0 +1,14 @@
+{
+    "name": {
+        "show": "true",
+        "sort": "true"
+    },
+    "email": {
+        "show": "true",
+        "sort": "false"
+    },
+    "role": {
+        "show": "true",
+        "sort": "false"
+    }
+}

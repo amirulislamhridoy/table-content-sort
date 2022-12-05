@@ -16,9 +16,6 @@ table thead th div{
   gap: 10px;
   align-items: center;
 }
-table thead th span{
-  /* padding-right: 10px; */
-}
 table thead svg{
   width: 15px;
   height: 15px;
@@ -33,6 +30,9 @@ table tbody tr:first-child, tr:nth-child(3), tr:nth-child(5), tr:nth-child(5), t
   background-color: #F5F5F5;
 }
 table tbody td{
+  font-size: 14px;
+  font-weight: 400;
+  color: #383838;
   border: 1px solid #E1E1E1;
   padding: 8px 10px;
 }
@@ -44,4 +44,7 @@ table tbody td div{
 table tbody td img{
   width: 25px;
   height: 25px;
+}
+table tbody td a{
+  color: #0071CC;
 }

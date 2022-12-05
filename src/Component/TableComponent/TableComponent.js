@@ -1,36 +1,41 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './TableComponent.css'
 
-const TableComponent = ({ setData, data, tableConfig }) => {
+const TableComponent = ({ data, tableConfig }) => {
+    const [updateData, setUpdateData] = useState([])
     const [sort, setSort] = useState('')
+    
+    useEffect(() => {
+        setUpdateData(data)
+    }, [])
     
     const nameF = (title) => {
         if (title === sort) {
-            return setData([...data.reverse()])
+            return setUpdateData([...data.reverse()])
         }
         setSort(title)
         const newData = data.sort((a, b) => a.person.name.toLowerCase() > b.person.name.toLowerCase() ? 1 : -1);
-        setData([...newData])
+        setUpdateData([...newData])
     }
     const cityF = (title) => {
         if (title === sort) {
-            return setData([...data.reverse()])
+            return setUpdateData([...data.reverse()])
         }
         setSort(title)
         const newData = data.sort((a, b) => a.city.toLowerCase() > b.city.toLowerCase() ? 1 : -1);
-        setData([...newData])
+        setUpdateData([...newData])
     }
     const emailF = (title) => {
         if (title === sort) {
-            return setData([...data.reverse()])
+            return setUpdateData([...data.reverse()])
         }
         setSort(title)
         const newData = data.sort((a, b) => a.email.toLowerCase() > b.email.toLowerCase() ? 1 : -1);
-        setData([...newData])
+        setUpdateData([...newData])
     }
     const joiningDateF = (title) => {
         if (title === sort) {
-            return setData([...data.reverse()])
+            return setUpdateData([...data.reverse()])
         }
         setSort(title)
         const newData = data.sort((a, b) => {
@@ -38,15 +43,15 @@ const TableComponent = ({ setData, data, tableConfig }) => {
             b = b.joiningDate.split('/')
             return a[2] - b[2] || a[1] - b[1] || a[0] - b[0];
         })
-        setData([...newData])
+        setUpdateData([...newData])
     }
     const roleF = (title) => {
         if (title === sort) {
-            return setData([...data.reverse()])
+            return setUpdateData([...data.reverse()])
         }
         setSort(title)
         const newData = data.sort((a, b) => a.role.toLowerCase() > b.role.toLowerCase() ? 1 : -1);
-        setData([...newData])
+        setUpdateData([...newData])
     }
     return (
         <div>
@@ -85,7 +90,7 @@ const TableComponent = ({ setData, data, tableConfig }) => {
                         </th>}
                         {(tableConfig?.role?.show === 'true') && <th><div>
                             <span>Role</span> 
-                            {(tableConfig?.joiningDate?.sort === 'true') && <svg onClick={() => roleF('role')} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+                            {(tableConfig?.role?.sort === 'true') && <svg onClick={() => roleF('role')} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 7.5L7.5 3m0 0L12 7.5M7.5 3v13.5m13.5 0L16.5 21m0 0L12 16.5m4.5 4.5V7.5" />
                             </svg>}
                         </div>
@@ -93,7 +98,7 @@ const TableComponent = ({ setData, data, tableConfig }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map((d, i) => <tr key={i}>
+                    {updateData.map((d, i) => <tr key={i}>
                     {(tableConfig?.name?.show === 'true') &&
                         <td>
                             <div>
@@ -104,7 +109,7 @@ const TableComponent = ({ setData, data, tableConfig }) => {
                             </div>
                         </td>}
                         {(tableConfig?.city?.show && <td>{d.city}</td>)}
-                        {(tableConfig?.email?.show && <td>{d.email}</td>)}
+                        {(tableConfig?.email?.show && <td><a href='' alt=''>{d.email}</a></td>)}
                         {(tableConfig?.joiningDate?.show && <td>{d.joiningDate}</td>)}
                         {(tableConfig?.role?.show && <td>{d.role}</td>)}
                     </tr>)}

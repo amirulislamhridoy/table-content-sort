@@ -1,0 +1,14 @@
+{
+    "email": {
+        "show": "true",
+        "sort": "false"
+    },
+    "joiningDate": {
+        "show": "true",
+        "sort": "true"
+    },
+    "role": {
+        "show": "true",
+        "sort": "true"
+    }
+}
